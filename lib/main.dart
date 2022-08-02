@@ -45,10 +45,10 @@ children: [
           margin: EdgeInsets.all(10),
           width: double.infinity,
           height: MediaQuery.of(context).size.height * 0.7,
-          color: Colors.lightBlueAccent,
+          color: Colors.deepPurpleAccent,
         ),
         SizedBox(
-          height: 10,
+          height: 20,
         ),
         RichText(
           text: const TextSpan(
