@@ -45,7 +45,9 @@ children: [
           margin: EdgeInsets.all(10),
           width: double.infinity,
           height: MediaQuery.of(context).size.height * 0.7,
-          color: Colors.deepPurpleAccent,
+          // color: Colors.deepPurpleAccent,
+          color: Colors.deepOrangeAccent,
+
         ),
         SizedBox(
           height: 20,
