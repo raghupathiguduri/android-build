@@ -4,6 +4,12 @@ pipeline {
     
     stages {
         
+        stage ('Cleanup of Old Build') {
+            steps {
+                sh "flutter clean"
+            }
+        }
+        
         stage ('Flutter Build App Bundle') {
             steps {
                 sh "flutter packages get"
@@ -14,12 +20,6 @@ pipeline {
         stage ('Flutter Build APK') {
             steps {
                 sh "flutter build apk"
-            }
-        }
-
-        stage ('Cleanup') {
-            steps {
-                sh "flutter clean"
             }
         }
     }
