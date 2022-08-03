@@ -6,6 +6,7 @@ pipeline {
         
         stage ('Flutter Build App Bundle') {
             steps {
+                sh "flutter run"
                 sh "flutter build appbundle"
             }
         }
