@@ -25,8 +25,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'build/app/outputs/bundle/release/*.aab , build/app/outputs/flutter-apk/*.apk fingerprint: true
-            
+            archiveArtifacts artifacts: 'build/app/outputs/bundle/release/*.aab , build/app/outputs/flutter-apk/*.apk' fingerprint: true
         }
     }
 }
