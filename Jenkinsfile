@@ -5,11 +5,6 @@ pipeline {
             steps {
                 cleanWs()
                 checkout scm
-                script {
-                    def commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-                    def build_tag = sh(script: "echo " + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
-                    echo "build_tag: " + build_tag
-                }
             }
         }
         stage('Cleanup of Old Build') {
@@ -30,8 +25,13 @@ pipeline {
         }
         stage('Artifact Store') {
             steps {
+                script {
+                    def commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    def build_tag = sh(script: "echo " + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
+                    echo "build_tag: " + build_tag
+                }
                 sh "cp build/app/outputs/bundle/release/*.aab ${build_tag}.aab"
-                sh "cp build/app/outputs/flutter-apk/*.apk ${build_tag}.apk"
+                sh "cp -r build/app/outputs/flutter-apk/*.apk ${build_tag}.apk"
             }
         }
     }
