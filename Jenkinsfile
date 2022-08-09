@@ -1,6 +1,4 @@
-pipeline {
-    
-    agent android
+node('slave-01') {
     
     stages {
         
