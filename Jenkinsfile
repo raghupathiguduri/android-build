@@ -1,19 +1,19 @@
 node('slave-01') {
         stage ('Cleanup of Old Build') {
-            steps {
+            step {
                 sh "flutter clean"
             }
         }
         
         stage ('Flutter Build App Bundle') {
-            steps {
+            step {
                 sh "flutter packages get"
                 sh "flutter build appbundle"
             }
         }
 
         stage ('Flutter Build APK') {
-            steps {
+            step {
                 sh "flutter build apk"
             }
         }
