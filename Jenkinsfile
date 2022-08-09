@@ -7,7 +7,7 @@ pipeline {
                 checkout scm
                 script {
                     def commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-                    def build_tag = sh(script: "echo " + "_" + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
+                    def build_tag = sh(script: "echo " + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
                     echo "build_tag: " + build_tag
                 }
             }
@@ -30,8 +30,8 @@ pipeline {
         }
         stage('Artifact Store') {
             steps {
-                sh "mv build/app/outputs/bundle/release/*.aab ${build_tag}.aab"
-                sh "mv build/app/outputs/flutter-apk/*.apk ${build_tag}.apk"
+                sh "cp build/app/outputs/bundle/release/*.aab ${build_tag}.aab"
+                sh "cp build/app/outputs/flutter-apk/*.apk ${build_tag}.apk"
             }
         }
     }
