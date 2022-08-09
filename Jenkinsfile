@@ -27,11 +27,12 @@ pipeline {
             steps {
                 script {
                     def commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-                    def build_tag = sh(script: "echo " + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
+                    def build_tag = sh(script: "echo " + params.BRANCH + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
                     echo "build_tag: " + build_tag
+                    sh "cp build/app/outputs/bundle/release/*.aab ${build_tag}.aab"
+                    sh "cp -r build/app/outputs/flutter-apk/app-release.apk ${build_tag}-release.apk"
+                    sh "cp -r build/app/outputs/flutter-apk/app.apk ${build_tag}.apk"
                 }
-                sh "cp build/app/outputs/bundle/release/*.aab ${build_tag}.aab"
-                sh "cp -r build/app/outputs/flutter-apk/*.apk ${build_tag}.apk"
             }
         }
     }
