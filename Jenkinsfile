@@ -1,6 +1,6 @@
 pipeline {
     
-    agent 'slave-01'
+    agent slave-01
     
     stages {
         
