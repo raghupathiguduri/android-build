@@ -1,4 +1,5 @@
 pipeline {
+        stages {
         node('slave-01') {
                 stage ('checkout') {
                         cleanWs()
@@ -22,5 +23,6 @@ pipeline {
                 always {
                         archiveArtifacts artifacts: 'build/app/outputs/bundle/release/*.aab , build/app/outputs/flutter-apk/*.apk' , fingerprint: true
                 }
+        }
         }
 }
