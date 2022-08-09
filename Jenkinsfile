@@ -7,8 +7,8 @@ pipeline {
                 checkout scm
                 script {
                     def commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-                    def build_tag = sh(script: "echo " + "_" + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
-                    sh "echo 'build_tag: ' + build_tag"
+                    def build_tag = sh(script: "echo " + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
+                    echo "build_tag: " + build_tag
                 }
             }
         }
