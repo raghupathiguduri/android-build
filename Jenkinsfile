@@ -1,7 +1,4 @@
 node('slave-01') {
-    
-    stages {
-        
         stage ('Cleanup of Old Build') {
             steps {
                 sh "flutter clean"
@@ -20,10 +17,10 @@ node('slave-01') {
                 sh "flutter build apk"
             }
         }
-    }
-    post {
-        always {
-            archiveArtifacts artifacts: 'build/app/outputs/bundle/release/*.aab , build/app/outputs/flutter-apk/*.apk' , fingerprint: true
+    
+        post {
+           always {
+              archiveArtifacts artifacts: 'build/app/outputs/bundle/release/*.aab , build/app/outputs/flutter-apk/*.apk' , fingerprint: true
         }
     }
 }
