@@ -38,7 +38,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: '*.aab , *.apk' , fingerprint: true
+            archiveArtifacts artifacts: '*.aab , *.apk' , fingerprint: true , onlyIfSuccessful: true, allowEmptyArchive: false
         }
     }
 }
